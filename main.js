@@ -1,10 +1,9 @@
 let data = null;
-let dataError = false;
 let speedOfSignal = 1000; // скорость сигнала в условных км/с
 let defaultFault = 0.01; // погрешность по умолчанию 1%
 let padding = 1000; // отступы на рисунке
 
-let pathToAPI = 'https://raw.githubusercontent.com/IlyaMBondarev/briomrs/main/api.json';
+let pathToAPI = 'https://github.com/IlyaMBondarev/briomrs/blob/d1c35d79519568bc0e22cce424f75131de0a0159/api.json';
  
 /**
  * Функция предназначена для округления числа до нужного количества чисел после запятой
@@ -93,7 +92,7 @@ class Renderer {
     /**
      * Функция задает начальные параметры и начинает отрисовку
      */
-    init() {
+    render() {
         this.canvasEl.height = this.canvasEl.clientHeight;
         this.canvasEl.width = this.canvasEl.clientWidth;
         this.ctx.fillStyle = "#FFFFFF";
@@ -164,7 +163,7 @@ class Renderer {
 /**
  * Функция получает данные с сервера, производит вычисления, необходимые для отрисовки и инициализирует отрисовку
  */
-function getData() {
+function doTask() {
     fetch(pathToAPI)
         .then(response => {
             return response.json();
@@ -198,18 +197,15 @@ function getData() {
                 data
             );
               
-            renderer.init();
+            renderer.render();
         })
         .catch(function () {
-            dataError = true;
             console.error('Ошибка');
         })
 }
 
 // кнопка загружает данные
-let startButton = document.getElementById('startButton');
-
-startButton.addEventListener('click', () => {
-    getData();
-    startButton.style.display = 'none';
+document.getElementById('startButton').addEventListener('click', () => {
+    doTask();
+    document.getElementById('startButton').style.display = 'none';
 })
