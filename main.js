@@ -3,7 +3,7 @@ let speedOfSignal = 1000; // скорость сигнала в условных
 let defaultFault = 0.01; // погрешность по умолчанию 1%
 let padding = 1000; // отступы на рисунке
 
-let pathToAPI = 'https://github.com/IlyaMBondarev/briomrs/blob/d1c35d79519568bc0e22cce424f75131de0a0159/api.json';
+let pathToAPI = 'https://raw.githubusercontent.com/IlyaMBondarev/briomrs/main/api.json';
  
 /**
  * Функция предназначена для округления числа до нужного количества чисел после запятой
